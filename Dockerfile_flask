@@ -1,0 +1,17 @@
+FROM centos:6
+
+MAINTAINER Ryu dongki <fbehdrl123@gmail.com>
+
+RUN pip install flask
+RUN yum install -y epel-release
+RUN yum install -y python-pip
+RUN pip install tornado
+RUN pip install -r requirements.txt
+
+ADD tornado_web_pack.tar.gz /opt/
+
+WORKDIR /opt/tornado_web_pack
+EXPOSE 80
+
+ENTRYPOINT ["python"]
+CMD ["runServer.py"]
